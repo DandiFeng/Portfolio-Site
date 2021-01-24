@@ -12,5 +12,23 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-material-ui`,
 		},
+		{
+          resolve: "gatsby-plugin-web-font-loader",
+          options: {
+              urls: ["/fonts/fontawesome-free-5.13.1-web/css/fontawesome.min.css"],
+          },
+        },
+        {
+	        resolve: `gatsby-plugin-manifest`,
+	      	options: {
+	        name: `GatsbyJS`,
+	        short_name: `GatsbyJS`,
+	        start_url: `/`,
+	        background_color: `#f7f0eb`,
+	        theme_color: `#a2466c`,
+	        display: `standalone`,
+	        icon:'static/images/favicon/favicon-32x32.png',
+	    	},
+        },
 	],
 }

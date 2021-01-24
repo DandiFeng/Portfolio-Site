@@ -4,7 +4,6 @@ import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Hidden from '@material-ui/core/Hidden'
 import Navigator from 'components/Navigator'
-
 import Header from 'components/Header'
 
 let theme = createMuiTheme({
@@ -18,14 +17,16 @@ let theme = createMuiTheme({
 	},
 	palette: {
 		primary: {
-			light: '#63ccff',
-			main: '#009be5',
+			light: '#e7eaff',
+			main: '#4e68f2',
 			dark: '#006db3',
+			contrastText: '#ffffff',
 		},
 	},
 	shape: {
-		borderRadius: 8,
+		borderRadius: 6,
 	},
+
 })
 
 theme = {
@@ -86,7 +87,7 @@ theme = {
 		},
 		MuiDivider: {
 			root: {
-				backgroundColor: '#404854',
+				backgroundColor: '#18202c',
 			},
 		},
 		MuiListItemText: {
@@ -99,7 +100,7 @@ theme = {
 				color: 'inherit',
 				marginRight: 0,
 				'& svg': {
-					fontSize: 20,
+					fontSize: 22,
 				},
 			},
 		},
@@ -118,12 +119,12 @@ theme = {
 	mixins: {
 		...theme.mixins,
 		toolbar: {
-			minHeight: 48,
+			minHeight: 0,
 		},
 	},
 }
 
-const drawerWidth = 256
+const drawerWidth = 242
 
 const styles = {
 	root: {

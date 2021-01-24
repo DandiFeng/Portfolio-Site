@@ -3,7 +3,6 @@ import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
-import Divider from '@material-ui/core/Divider'
 import Drawer from '@material-ui/core/Drawer'
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
@@ -11,56 +10,42 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import HomeIcon from '@material-ui/icons/Home'
-import PeopleIcon from '@material-ui/icons/People'
-import DnsRoundedIcon from '@material-ui/icons/DnsRounded'
-import PermMediaOutlinedIcon from '@material-ui/icons/PhotoSizeSelectActual'
-import PublicIcon from '@material-ui/icons/Public'
-import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet'
-import SettingsInputComponentIcon from '@material-ui/icons/SettingsInputComponent'
-import TimerIcon from '@material-ui/icons/Timer'
-import SettingsIcon from '@material-ui/icons/Settings'
-import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup'
-import Logo from 'components/Logo'
+import CreateIcon from '@material-ui/icons/Create'
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects'
+import LinkedInIcon from '@material-ui/icons/LinkedIn'
+import GitHubIcon from '@material-ui/icons/GitHub'
+import EmailIcon from '@material-ui/icons/Email'
+
 const categories = [
 	{
-		id: 'Develop',
+		id: 'Menu',
 		children: [
-			{ id: 'Authentication', icon: <PeopleIcon />, page: 'authentication' },
-			{ id: 'Database', icon: <DnsRoundedIcon />, page: 'database' },
-			{ id: 'Storage', icon: <PermMediaOutlinedIcon />, page: 'storage' },
-			{ id: 'Hosting', icon: <PublicIcon />, page: 'hosting' },
-			{ id: 'Functions', icon: <SettingsEthernetIcon />, page: 'functions' },
-			{ id: 'ML Kit', icon: <SettingsInputComponentIcon />, page: 'ml' },
-		],
-	},
-	{
-		id: 'Quality',
-		children: [
-			{ id: 'Analytics', icon: <SettingsIcon />, page: 'analytics' },
-			{ id: 'Performance', icon: <TimerIcon />, page: 'performance' },
-			{ id: 'Test Lab', icon: <PhonelinkSetupIcon />, page: 'lab' },
+			{ id: 'Home', icon: <HomeIcon />, page: '/' },
+			{ id: 'Work', icon: <CreateIcon />, page: '/Work' },
+			{ id: 'Thoughts', icon: <EmojiObjectsIcon />, page: '/thoughts' },
 		],
 	},
 ]
 
 const styles = theme => ({
 	categoryHeader: {
-		paddingTop: 16,
+		paddingTop: 40,
 		paddingBottom: 16,
-	},
+	},	
 	categoryHeaderPrimary: {
 		color: theme.palette.common.white,
+		fontSize: 18,
 	},
 	item: {
 		paddingTop: 4,
 		paddingBottom: 4,
-		color: 'rgba(255, 255, 255, 0.7)',
+		color: theme.palette.common.white,
 	},
 	itemCategory: {
 		backgroundColor: '#232f3e',
-		boxShadow: '0 -1px 0 #404854 inset',
-		paddingTop: 16,
-		paddingBottom: 16,
+		boxShadow: '0 -1px 0 #232f3e inset',
+		paddingTop: 24,
+		paddingBottom: 56,
 	},
 	firebase: {
 		fontSize: 24,
@@ -69,11 +54,12 @@ const styles = theme => ({
 	},
 	itemActionable: {
 		'&:hover': {
-			backgroundColor: 'rgba(255, 255, 255, 0.08)',
+			backgroundColor: 'rgba(78, 104, 242,0.5)',
 		},
 	},
 	itemActiveItem: {
-		color: '#4fc3f7',
+		color: '#4e68f2',
+		fontWeight: 900,
 	},
 	itemPrimary: {
 		color: 'inherit',
@@ -82,9 +68,12 @@ const styles = theme => ({
 			fontSize: theme.typography.fontSize,
 		},
 	},
-	textDense: {},
-	divider: {
-		marginTop: theme.spacing.unit * 2,
+	marginAuto: {
+		margin: 'auto'
+   	},
+	itemPosition:{
+		position:'fixed',
+		bottom:0,
 	},
 })
 
@@ -94,28 +83,12 @@ function Navigator({ classes, location = null, ...rest }) {
 		<Drawer variant="permanent" {...rest}>
 			<List disablePadding>
 				<ListItem className={classNames(classes.firebase, classes.item, classes.itemCategory)}>
-					<Grid container alignItems="center" spacing={8} direction="row">
-						<Grid item>
-							<Logo />
-						</Grid>
-						<Grid item>Paperbase</Grid>
+					<Grid container alignItems="center" spacing={5} direction="row">
+						<Grid item>Dandi Feng</Grid>
 					</Grid>
 				</ListItem>
 
-				<Link style={{ textDecoration: 'none', color: 'inherit' }} to="/">
-					<ListItem className={classNames(classes.item, classes.itemCategory)}>
-						<ListItemIcon>
-							<HomeIcon />
-						</ListItemIcon>
-						<ListItemText
-							classes={{
-								primary: classes.itemPrimary,
-							}}
-						>
-							Project Overview
-						</ListItemText>
-					</ListItem>
-				</Link>
+				
 				{categories.map(({ id, children }) => (
 					<React.Fragment key={id}>
 						<ListItem className={classes.categoryHeader}>
@@ -127,12 +100,13 @@ function Navigator({ classes, location = null, ...rest }) {
 								{id}
 							</ListItemText>
 						</ListItem>
+
 						{children.map(({ id: childId, icon, page = null }) => {
 							return page ? (
 								<Link
 									key={childId}
 									style={{ textDecoration: 'none', color: 'inherit' }}
-									to={`/${page}`}
+									to={`${page}`}
 								>
 									<ListItem
 										button
@@ -158,10 +132,29 @@ function Navigator({ classes, location = null, ...rest }) {
 								<div />
 							)
 						})}
-						<Divider className={classes.divider} />
 					</React.Fragment>
-				))}
+				))}	
 			</List>
+
+			<div className={classes.marginAuto}></div>
+			<ListItem className={classNames(classes.item, classes.itemCategory)} >
+				<ListItemIcon>
+					<a style={{ textDecoration:'none', color: 'inherit' }} target="_blank" href="https://www.linkedin.com/in/dandi-feng/">
+					<LinkedInIcon />
+					</a>
+				</ListItemIcon>
+				<ListItemIcon>
+					<a style={{ textDecoration:'none', color: 'inherit' }} target="_blank" href="https://github.com/DandiFeng">
+					<GitHubIcon />
+					</a>
+				</ListItemIcon>
+				<ListItemIcon>
+					<a style={{ textDecoration:'none', color: 'inherit' }} href="mailto:dandi21.feng@gmail.com">
+					<EmailIcon />
+					</a>
+				</ListItemIcon>
+			</ListItem>
+
 		</Drawer>
 	)
 }
