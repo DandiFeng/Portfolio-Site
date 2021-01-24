@@ -114,7 +114,7 @@ function Navigator({ classes, location = null, ...rest }) {
 										className={classNames(
 											classes.item,
 											classes.itemActionable,
-											(matchPath && page ? matchPath === page : false) && classes.itemActiveItem
+											((matchPath && page ? matchPath === page.replace(/\//g, '') : false) || (!matchPath && page === "/")) && classes.itemActiveItem
 										)}
 									>
 										<ListItemIcon>{icon}</ListItemIcon>
